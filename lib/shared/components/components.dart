@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/modules/web_view/web_view_screen.dart';
-import 'package:my_app/shared/cubit/cubit.dart';
-import 'package:path/path.dart';
 
-import '../../layout/news_app/cubit/cubit.dart';
+import '../../layout/todo_app/cubit/cubit.dart';
 
 Widget defaultButton ({
   double width = double.infinity,
@@ -144,91 +141,4 @@ Widget MyDivider() => Padding(
     height: 1,
     color: Colors.grey,
   ),
-);
-
-Widget buildArticleItem(article, context) =>
-    InkWell(
-      onTap: (){
-        navigateTo(context, WebViewScreen(article['url']));
-      },
-      child: Padding( padding: const EdgeInsets.all(20.0),
-        child: Row(
-      children: [
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.grey[200], // لون خلفية يظهر أثناء التحميل أو عند الخطأ
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: article['urlToImage'] != null && article['urlToImage'] != ""
-                ? Image.network(
-              '${article['urlToImage']}',
-              fit: BoxFit.cover,
-              // معالجة أخطاء الاتصال (مثل HandshakeException)
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(
-                  Icons.broken_image,
-                  size: 50,
-                  color: Colors.grey,
-                );
-              },
-            )
-                : const Icon(
-              Icons.image_not_supported,
-              size: 50,
-              color: Colors.grey,
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        Expanded(
-          child: Container(
-            height: 120,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Text(
-                    '${article['title']}',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-                Text(
-                  '${article['publishedAt']}',
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-        ),
-      ),
-    );
-
-
-Widget articleBuilder(list, context, {isSearch = false}) =>
-    list.isEmpty?  Center(
-    child: isSearch ? Container() : CircularProgressIndicator()) : ListView.separated(
-    physics: BouncingScrollPhysics(),
-    key: ValueKey(NewsCubit.get(context).isDark),
-    itemBuilder: (context, index) => buildArticleItem(list[index], context),
-    separatorBuilder: (context, index) => MyDivider(),
-    itemCount: list.length);
-
-void navigateTo(context, widget) => Navigator.push(
-    context,
-    MaterialPageRoute(
-        builder: (context) => widget,
-    ),
 );
