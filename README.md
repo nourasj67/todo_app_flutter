@@ -18,26 +18,6 @@ A professional and clean **Flutter** application for managing daily tasks. This 
 
 ---
 
-## 📱 App Preview (معاينة التطبيق)
-
-<table style="width: 100%; border: none;">
-  <tr>
-    <td align="center" style="border: none;">
-      <b>Tasks List</b><br>
-      <img src="screenshots/tasks.png" width="250" alt="Tasks Screen">
-    </td>
-    <td align="center" style="border: none;">
-      <b>Add Task</b><br>
-      <img src="screenshots/add.png" width="250" alt="Add Screen">
-    </td>
-    <td align="center" style="border: none;">
-      <b>Done/Archived</b><br>
-      <img src="screenshots/done.png" width="250" alt="Status Screen">
-    </td>
-  </tr>
-</table>
-
----
 
 ## ⚙️ How to Run (كيفية التشغيل)
 1.  Clone this repository:
